@@ -154,7 +154,7 @@ USAGE
     Excon.stub(method: :patch) do |request|
       assert_equal("/resource/#{uuid}", request[:path])
       assert_equal('application/json', request[:headers]['Content-Type'])
-      assert_equal(body, MultiJson.load(request[:body]))
+      assert_equal(body, MultiJson.decode(request[:body]))
       Excon.stubs.pop
       {status: 200, headers: {'Content-Type' => 'application/json'},
        body: MultiJson.dump(result)}
@@ -176,7 +176,7 @@ class CLIFromSchemaTest < MiniTest::Unit::TestCase
     Excon.stub(method: :patch) do |request|
       assert_equal("/resource/#{uuid}", request[:path])
       assert_equal('application/json', request[:headers]['Content-Type'])
-      assert_equal(body, MultiJson.load(request[:body]))
+      assert_equal(body, MultiJson.decode(request[:body]))
       Excon.stubs.pop
       {status: 200, headers: {'Content-Type' => 'application/json'},
        body: MultiJson.dump(result)}
@@ -198,7 +198,7 @@ class CLIFromSchemaTest < MiniTest::Unit::TestCase
     Excon.stub(method: :patch) do |request|
       assert_equal("/api/resource/#{uuid}", request[:path])
       assert_equal('application/json', request[:headers]['Content-Type'])
-      assert_equal(body, MultiJson.load(request[:body]))
+      assert_equal(body, MultiJson.decode(request[:body]))
       Excon.stubs.pop
       {status: 200, headers: {'Content-Type' => 'application/json'},
        body: MultiJson.dump(result)}

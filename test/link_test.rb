@@ -75,7 +75,7 @@ class LinkTest < MiniTest::Unit::TestCase
     body = {'Hello' => 'world!'}
     Excon.stub(method: :post) do |request|
       assert_equal('application/json', request[:headers]['Content-Type'])
-      assert_equal(body, MultiJson.load(request[:body]))
+      assert_equal(body, MultiJson.decode(request[:body]))
       Excon.stubs.pop
       {status: 200, body: ''}
     end
@@ -129,7 +129,7 @@ class LinkTest < MiniTest::Unit::TestCase
       assert_equal('application/json', request[:headers]['Content-Type'])
       assert_equal('application/vnd.heroku+json; version=3',
                    request[:headers]['Accept'])
-      assert_equal(body, MultiJson.load(request[:body]))
+      assert_equal(body, MultiJson.decode(request[:body]))
       Excon.stubs.pop
       {status: 200}
     end
@@ -148,7 +148,7 @@ class LinkTest < MiniTest::Unit::TestCase
       assert_equal('application/json', request[:headers]['Content-Type'])
       assert_equal('application/vnd.heroku+json; version=3',
                    request[:headers]['Accept'])
-      assert_equal(body, MultiJson.load(request[:body]))
+      assert_equal(body, MultiJson.decode(request[:body]))
       Excon.stubs.pop
       {status: 200}
     end

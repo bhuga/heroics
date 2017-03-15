@@ -200,7 +200,7 @@ module ExampleClient
     end
   end
 
-  SCHEMA = Heroics::Schema.new(MultiJson.load(<<-'HEROICS_SCHEMA'))
+  SCHEMA = Heroics::Schema.new(MultiJson.decode(<<-'HEROICS_SCHEMA'))
 {
   "description":"Sample schema for use in tests.",
   "definitions":{
